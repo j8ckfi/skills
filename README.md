@@ -38,6 +38,28 @@ The skill is an operating procedure, not an explainer. It gives the agent a symp
 
 **Source:** the skill distills Alex L. Zhang and Omar Khattab, ["Language model harnesses are compositional generalizers"](https://alexzhang13.github.io/blog/2026/harness/) (July 2026). It carries the post's own caveats — the technique is not guaranteed to work, training runtime is 1.5–3x, and the authors explicitly warn against over-engineering harnesses into hand-authored pipelines. Its **Provenance** section separates the post's measured findings from the operational thresholds supplied to make them checkable.
 
+### ontology
+
+Typed knowledge graph for structured agent memory and composable skills. Everything is an entity with a type, properties, and relations; mutations are validated against a schema before they commit. Storage is an append-only JSONL graph at `memory/ontology/graph.jsonl`, with optional constraints in `memory/ontology/schema.yaml`.
+
+The skill ships a CLI (`python3 scripts/ontology.py` or `python3 -m src.cli`), modular Python services, query/schema references, and a 60-test suite.
+
+**Use when:**
+
+- Creating or querying entities (Person, Project, Task, Event, Document, and the rest of the core types)
+- Linking related objects, or asking what depends on what
+- Enforcing required fields, enums, cardinality, or acyclic relations
+- Planning multi-step work as a sequence of graph transformations
+- Sharing state across skills (declare `reads` / `writes` in the skill contract)
+- Someone says "remember that", "what do I know about", "link X to Y", or "show all tasks for project Z"
+
+**What it can do:**
+
+- Create, get, query, update, and delete typed entities
+- Relate entities and traverse incoming/outgoing edges
+- Validate the graph against `schema.yaml`
+- Append schema definitions without overwriting prior types
+
 ## Installation
 
 ```bash
@@ -48,12 +70,14 @@ Install a single skill:
 
 ```bash
 npx skills add j8ckfi/skills --skill harness-design
+npx skills add j8ckfi/skills --skill ontology
 ```
 
 Use it once without installing:
 
 ```bash
 npx skills use j8ckfi/skills@harness-design | claude
+npx skills use j8ckfi/skills@ontology | claude
 ```
 
 ## Usage
@@ -72,6 +96,14 @@ I'm adding a sub-agent to this pipeline. What should it be allowed to return?
 
 ```
 This orchestrator works fine on a 30k-token doc and falls apart on a 2M-token one.
+```
+
+```
+Remember that Alice owns the Website Redesign project, then show everything connected to that project.
+```
+
+```
+Link task "Prepare agenda" as a blocker of "Send summary", then validate the graph.
 ```
 
 ## Skill Structure
