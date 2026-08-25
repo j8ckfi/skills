@@ -40,25 +40,23 @@ The skill is an operating procedure, not an explainer. It gives the agent a symp
 
 ### ontology
 
-Typed knowledge graph for structured agent memory and composable skills. Everything is an entity with a type, properties, and relations; mutations are validated against a schema before they commit. Storage is an append-only JSONL graph at `memory/ontology/graph.jsonl`, with optional constraints in `memory/ontology/schema.yaml`.
+Derives ground truth into a durable on-disk network of nodes and edges. Repo docs, papers, comments, and unaudited inference stay hypotheses until a claim is reconstructed and the reconstruction holds.
 
-The skill ships a CLI (`python3 scripts/ontology.py` or `python3 -m src.cli`), modular Python services, query/schema references, and a 60-test suite.
+The artifact is `ontology/` at the workspace root: `INDEX.md`, `graph.jsonl`, and `nodes/<id>.md`. Chat is a delta for the run, not the ontology.
 
 **Use when:**
 
-- Creating or querying entities (Person, Project, Task, Event, Document, and the rest of the core types)
-- Linking related objects, or asking what depends on what
-- Enforcing required fields, enums, cardinality, or acyclic relations
-- Planning multi-step work as a sequence of graph transformations
-- Sharing state across skills (declare `reads` / `writes` in the skill contract)
-- Someone says "remember that", "what do I know about", "link X to Y", or "show all tasks for project Z"
+- `/ontology`, stale or scattered docs, or greenfield literature
+- A claim must be formalized before it is believed
+- README, comments, or a paper disagree with the code or the proof
+- Names for the same object are scattered and need `same-as` or a split
 
-**What it can do:**
+**What it does:**
 
-- Create, get, query, update, and delete typed entities
-- Relate entities and traverse incoming/outgoing edges
-- Validate the graph against `schema.yaml`
-- Append schema definitions without overwriting prior types
+- Frame questions evidence can answer, then inventory sources by trust
+- Derive from the highest-trust source that can produce the answer
+- Admit only what survived; mark gaps `unknown` or `rejected`
+- Diff admitted nodes against docs and papers; record `contradicts`
 
 ## Installation
 
@@ -99,11 +97,11 @@ This orchestrator works fine on a 30k-token doc and falls apart on a 2M-token on
 ```
 
 ```
-Remember that Alice owns the Website Redesign project, then show everything connected to that project.
+The README and the code disagree about how auth works. Build an ontology.
 ```
 
 ```
-Link task "Prepare agenda" as a blocker of "Send summary", then validate the graph.
+Formalize the claims in this paper before we treat them as true.
 ```
 
 ## Skill Structure
