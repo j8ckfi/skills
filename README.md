@@ -26,7 +26,8 @@ Blanket preference and craft baseline for all frontend work across every product
 - Bans decorative wrappers, cards-for-cards, and eyebrows (marketing-site kicker labels)
 - Applies Emil Kowalski motion rules (`< 300ms`, decelerating entrances, `:active` press feedback)
 - Enforces the 10x Rule: zero animation for repeat utilitarian interactions (>10x)
-- Bans generic agent-default aesthetics (Inter/Geist monoculture, purple primaries, gradient mesh, pulsing dots, `transition: all`)
+- Enforces strict typography rules: Geist default on web landings, system fonts always for app UI, and Inter banned as an app default
+- Bans generic agent-default aesthetics (purple primaries, gradient mesh, pulsing dots, `transition: all`)
 
 ### abiome-ui
 

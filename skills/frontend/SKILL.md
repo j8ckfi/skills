@@ -1,6 +1,6 @@
 ---
 name: frontend
-description: Blanket preference and craft baseline for ALL frontend engineering — new UI, components, chrome, landing pages, tools, modals, or design reviews. Enforces the CSS-cascade model of design docs (reads repo design.md / FRONTEND.md / GUIDELINES.md first), strictly isolates product brands into silos, mandates monochrome UI (system white, black, grays), bans decorative chrome, wrappers, and eyebrows, enforces Emil Kowalski motion principles (transitions.dev) with zero-animation on repeat (>10x) actions, and eliminates agent-default slop across all web and desktop surfaces. Use whenever writing, styling, or reviewing UI code across any product or stack.
+description: Blanket preference and craft baseline for ALL frontend engineering — new UI, components, chrome, landing pages, tools, modals, or design reviews. Enforces the CSS-cascade model of design docs (reads repo design.md / FRONTEND.md / GUIDELINES.md first), strictly isolates product brands into silos, mandates monochrome UI (system white, black, grays), bans decorative chrome, wrappers, and eyebrows, establishes typography rules (Geist default on landings; system fonts always for app UI; Inter banned as app default), enforces Emil Kowalski motion principles (transitions.dev) with zero-animation on repeat (>10x) actions, and eliminates agent-default slop across all web and desktop surfaces. Use whenever writing, styling, or reviewing UI code across any product or stack.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -69,7 +69,25 @@ In the general frontend baseline, UI is strictly monochrome:
 
 ---
 
-## 5. Motion & Responsiveness (transitions.dev)
+## 5. Typography: Landing Pages vs. App UI
+
+Typography follows a strict partition between marketing landing pages and utilitarian application interfaces:
+
+### Landing Pages
+- **Find a font and stick to it:** Exactly one family across the entire landing page. Commit the choice in that repo's `design.md`.
+- **Default pick:** `Geist` is the approved default pick for web landing pages.
+- **No font rotation:** Never rotate different typefaces across sections or components.
+- **No font bloat:** Never load multiple Google fonts or stack decorative webfonts.
+
+### App UI (Everything That Is Not a Landing Page)
+- **System font, always, forever:** Use `ui-sans-serif, system-ui, sans-serif` for app chrome, settings, dashboards, desktop apps, consoles, and controls.
+- **System mono for code:** Use `ui-monospace, monospace` for tabular numbers, terminal output, logs, and code viewports.
+- **No Inter:** Inter is banned as an unconsidered default for application UI.
+- **No custom display faces in apps:** App UI must remain fast and unobtrusive. Geist is permitted on web landing pages as the default pick, but is NOT the app UI font.
+
+---
+
+## 6. Motion & Responsiveness (transitions.dev)
 
 Follow the motion principles of Emil Kowalski ([transitions.dev](https://transitions.dev/)):
 
@@ -88,7 +106,7 @@ Follow the motion principles of Emil Kowalski ([transitions.dev](https://transit
 
 ---
 
-## 6. Hard Bans (Agent-Default Aesthetics)
+## 7. Hard Bans (Agent-Default Aesthetics)
 
 The following defaults are banned across all frontend work:
 
@@ -96,7 +114,9 @@ The following defaults are banned across all frontend work:
 |---|---|---|
 | **Eyebrows / kickers** | Ornamental marketing clutter that degrades interface hierarchy. | State the headline or component title directly. No floating mini-tags. |
 | **Decorative card-for-a-card** | Clutters layout with unnecessary borders, paddings, and floating surfaces. | Let content sit directly on the surface or in flat structured lists. |
-| **Inter / Geist / system-ui as "designed" face** | Generic template default applied without consideration. | Choose a typeface intentionally for the domain, or let system typography remain unpretentious. |
+| **Inter as default app UI face** | Thoughtless agent default applied to app chrome and product interfaces. | Use system fonts for apps (`ui-sans-serif, system-ui, sans-serif`). For landing pages, pick one font (default Geist) and record in `design.md`. |
+| **Custom display faces in app UI** | Visual clutter and unnecessary overhead in utilitarian interfaces. | System font always and forever in app UI. Geist is only for web landings. |
+| **Font rotation across sections** | Creates visual inconsistency and font loading bloat. | One family per landing page. Never pull multiple Google fonts. |
 | **Indigo / violet purple primaries** | Generic shadcn/Tailwind default with zero product identity. | Strict monochrome (system white, black, neutral grays) unless repo `design.md` specifies otherwise. |
 | **Mesh / aurora / hero gradients** | Visual filler that conceals weak layout and typography. | Solid surfaces, clean whitespace, and purposeful layout grids. |
 | **Glassmorphism / backdrop-blur decoration** | Illegible contrast, noisy layering, and GPU waste. | Opaque surfaces with clean contrast borders. |
@@ -110,11 +130,11 @@ The following defaults are banned across all frontend work:
 
 ---
 
-## 7. Living Document
+## 8. Living Document
 
 This skill is a living standard maintained to prevent recurring AI design antipatterns.
 
 ### Boundary of Responsibility:
-1. **This file (`skills/frontend/SKILL.md`):** Universal baseline rules, anti-slop bans, the 10x motion rule, monochrome defaults, and the design doc cascade model.
-2. **Repo design document (`design.md` / `FRONTEND.md` / `GUIDELINES.md`):** Product-specific overrides, custom radius mappings, component libraries, domain-specific controls, and product-level theme tokens.
+1. **This file (`skills/frontend/SKILL.md`):** Universal baseline rules, anti-slop bans, typography partition (landings vs app UI), the 10x motion rule, monochrome defaults, and the design doc cascade model.
+2. **Repo design document (`design.md` / `FRONTEND.md` / `GUIDELINES.md`):** Product-specific overrides, landing page font selection, custom radius mappings, component libraries, domain-specific controls, and product-level theme tokens.
 3. **`skills/abiome-ui/SKILL.md`:** The siloed brand guidelines, WebGL flow field, and design tokens exclusive to the abiome surface.
