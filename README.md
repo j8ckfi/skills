@@ -8,6 +8,45 @@ Skills follow the [Agent Skills](https://agentskills.io/) format.
 
 ## Available Skills
 
+### frontend
+
+Blanket preference and craft baseline for all frontend work across every product and stack. Enforces the CSS-cascade model of design docs, strictly isolates product brands into silos, mandates monochrome UI by default, bans decorative chrome, wrappers, and eyebrows, and enforces Emil Kowalski motion principles with zero animation on repeat (>10x) actions.
+
+**Use when:**
+
+- Any frontend work — new UI, restyles, landing pages, desktop/web app chrome, components, mocks, or design reviews
+- Writing or refactoring UI components before introducing styling choices
+- Establishing or updating a repository's `design.md`
+
+**What it does:**
+
+- Inspects repo for `design.md` / `FRONTEND.md` / `GUIDELINES.md` first (local author stylesheet overrides this baseline)
+- Routes abiome surfaces directly to the sibling `abiome-ui` skill
+- Enforces monochrome UI (system white, black, and system grays) with system theme tracking
+- Bans decorative wrappers, cards-for-cards, and eyebrows (marketing-site kicker labels)
+- Applies Emil Kowalski motion rules (`< 300ms`, decelerating entrances, `:active` press feedback)
+- Enforces the 10x Rule: zero animation for repeat utilitarian interactions (>10x)
+- Bans generic agent-default aesthetics (Inter/Geist monoculture, purple primaries, gradient mesh, pulsing dots, `transition: all`)
+
+### abiome-ui
+
+Authoritative brand guidelines and design system for all abiome digital surfaces. Enforces the two-layer spatial architecture (sea-glass flow field + paper records), exact brand color tokens, Alegreya typography, zero border-radius, flat shadowless panels, lowercase brand naming, cycling square motifs, and dense tool UI rules.
+
+**Use when:**
+
+- Any UI for abiome — landing pages, publications, slide decks, model cards, `iso.abiome.org`, AbCP, platform-main, and all repositories under `abiome-org/*` or `*.abiome.org`
+- Designing or implementing components using `@abiome/ds`
+- Styling dense consoles and working tools without compromising code/log legibility
+
+**What it does:**
+
+- Establishes two-layer composition: background sea-glass WebGL flow field + foreground sharp white paper records
+- Enforces exact brand tokens: `--ink` (`#1d1b18`), `--brand` (`#006e59`), `--field` (`#a8d0bd`), `--paper` (`#ffffff`), seaglass (`#a5d6c2`), mint (`#cfe9db`), butter (`#f0dfa2`)
+- Mandates `Alegreya` and `Alegreya SC` typography, lowercase **abiome** branding, `border-radius: 0`, and no drop shadows
+- Implements the signature cycling square punctuation motif and Bayer-dithered shader field
+- Adapts dense working surfaces (code editors, logs, terminals): maintains tokens and sharp geometry while receding or omitting live shader animations inside working viewports
+- References `@abiome/ds` in `abiome-org/landing` `ds/` and canonical `GUIDELINES.md`
+
 ### harness-design
 
 Audits, redesigns, and debugs LM harnesses and agent scaffolds so that every individual model call stays in-distribution even when the overall task is not. Built around the **locally in-distribution (LID)** invariant: the global trajectory may be wildly out-of-distribution, but each constituent call must not be.
@@ -67,6 +106,8 @@ npx skills add j8ckfi/skills
 Install a single skill:
 
 ```bash
+npx skills add j8ckfi/skills --skill frontend
+npx skills add j8ckfi/skills --skill abiome-ui
 npx skills add j8ckfi/skills --skill harness-design
 npx skills add j8ckfi/skills --skill ontology
 ```
@@ -74,6 +115,8 @@ npx skills add j8ckfi/skills --skill ontology
 Use it once without installing:
 
 ```bash
+npx skills use j8ckfi/skills@frontend | claude
+npx skills use j8ckfi/skills@abiome-ui | claude
 npx skills use j8ckfi/skills@harness-design | claude
 npx skills use j8ckfi/skills@ontology | claude
 ```
