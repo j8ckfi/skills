@@ -58,6 +58,33 @@ The artifact is `ontology/` at the workspace root: `INDEX.md`, `graph.jsonl`, an
 - Admit only what survived; mark gaps `unknown` or `rejected`
 - Diff admitted nodes against docs and papers; record `contradicts`
 
+### train-moe
+
+Operating procedure for pretraining, optimizing, and post-training frontier Mixture of Experts (MoE) models using verified August 2026 SOTA methods. Evaluates architecture, residual stability, dispatch compression, second-order optimizers, training megakernels, and sparse policy RL.
+
+The skill provides a one-screen default stack, a symptom router for cluster and training failure modes, a six-check operational audit with pass/fail criteria, hard anti-patterns, and direct provenance links to library nodes.
+
+**Use when:**
+
+- Designing, configuring, or auditing an MoE pretraining cluster run
+- Selecting sparse routing topologies (DeepSeek-V4 CSA+HCA with mHC residuals vs Kimi K3 Delta Attention with block AttnRes)
+- Resolving inter-node All-to-All communication saturation with LatentMoE dispatch compression
+- Configuring second-order optimizers (Muon² for 2D hidden matrices vs AdamW for embeddings/heads)
+- Deploying Mixture-of-Kittens (MoK) fused megakernels on GB200/GB300 NVL72 Blackwell systems
+- Post-training sparse MoE backbones with SAPO or asynchronous agentic RL with SAO
+- Distilling specialist checkpoints into MoE using OPD/MOPD and OPDVR
+
+**What it checks:**
+
+- `C1` Architecture & Dispatch Compression — CSA+HCA hybrid attention, manifold-constrained hyper-connections (mHC $n=4$), LatentMoE dispatch compression
+- `C2` Residual Stability & Routing Diversity — expert routing coefficient of variation and sub-linear residual growth
+- `C3` Training Megakernels & Compute Topology — Mixture-of-Kittens (MoK) on Blackwell NVL72 vs DeepEP/Megatron-Core on non-NVL72
+- `C4` Optimizer Parameter Partitioning — Muon² / KL-SOAP on 2D hidden matrices; AdamW on embeddings and lm_head
+- `C5` Post-Training & Sparse Policy Optimization — SAPO for MoE/VL RL, SAO for asynchronous agent rollouts (no vanilla GRPO)
+- `C6` Distillation & Specialist Merging — OPD/MOPD on-policy distillation and OPDVR verifier regularization
+
+**Source:** compiled view from `j8ckfi/library` as of August 27, 2026. Dense paper notes and mathematical formulations live in `skills/train-moe/references/`.
+
 ## Installation
 
 ```bash
@@ -69,6 +96,7 @@ Install a single skill:
 ```bash
 npx skills add j8ckfi/skills --skill harness-design
 npx skills add j8ckfi/skills --skill ontology
+npx skills add j8ckfi/skills --skill train-moe
 ```
 
 Use it once without installing:
@@ -76,6 +104,7 @@ Use it once without installing:
 ```bash
 npx skills use j8ckfi/skills@harness-design | claude
 npx skills use j8ckfi/skills@ontology | claude
+npx skills use j8ckfi/skills@train-moe | claude
 ```
 
 ## Usage
@@ -102,6 +131,14 @@ The README and the code disagree about how auth works. Build an ontology.
 
 ```
 Formalize the claims in this paper before we treat them as true.
+```
+
+```
+Audit our Blackwell cluster pretraining config for an 800B MoE run.
+```
+
+```
+We're seeing routing collapse and expert imbalance during GRPO post-training on our MoE model.
 ```
 
 ## Skill Structure
