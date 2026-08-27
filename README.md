@@ -98,6 +98,32 @@ The artifact is `ontology/` at the workspace root: `INDEX.md`, `graph.jsonl`, an
 - Admit only what survived; mark gaps `unknown` or `rejected`
 - Diff admitted nodes against docs and papers; record `contradicts`
 
+### train-dense
+
+Operating procedure for pretraining and auditing dense (non-MoE) ~7B parameter language models using verified August 2026 SOTA methods. Enforces Olmo 3 dense transformer shapes, Dolma 3 staged curricula, Muon² / KL-SOAP parameter partitioning, FlashAttention-4 and Gram-NS execution kernels, and verified post-training reasoning pipelines.
+
+The skill provides an honest gap analysis, a one-screen default stack, a symptom router for pretraining bottlenecks, a six-check operational audit with pass/fail criteria, hard anti-patterns, and direct provenance links to library nodes.
+
+**Use when:**
+
+- Training a dense ~7B LM from scratch or auditing a dense pretrain run
+- Choosing between Muon², AdamW, and KL-SOAP optimizer partitioning
+- Matching learning rates across second-moment and first-moment parameter groups by update-RMS
+- Selecting attention and orthogonalization kernels (FlashAttention-4, Gram Newton-Schulz, Hierarchical Muon)
+- Deciding on low-precision numeric formats (BF16, MXFP8, Quartet II NVFP4, Sparse-BitNet)
+- Post-training dense reasoners on math and code with CISPO, CPPO, MinPRO, SSPO, or OPD/OPDVR
+
+**What it checks:**
+
+- `C1` Architecture & Residual Stream — Olmo 3 7B dense transformer shape, standard identity residuals, optional mHC ($n=4$) stability tests (no MoE layers or OLMo-2)
+- `C2` Data Curriculum & Annealing — Dolma 3 staged pretraining and Dolmino-style annealing mixtures
+- `C3` Attention & Optimizer Kernel Acceleration — FlashAttention-4 (CuTe-DSL) on Blackwell/Hopper and Gram Newton-Schulz / Hierarchical Muon (no MoK on dense)
+- `C4` Optimizer Parameter Partitioning & LR Matching — Muon² / KL-SOAP on 2D hidden matrices, AdamW on embeddings and lm_head, update-RMS LR scaling
+- `C5` Numeric Format & Quantization Gating — standard BF16/MXFP8 compute, Quartet II MS-EDEN NVFP4 on Blackwell, native Sparse-BitNet gating
+- `C6` Post-Training Alignment & Math/Code Reasoning — Dolci SFT $\to$ Delta-DPO $\to$ RLVR, CISPO baseline, modern RL objectives, OPD/OPDVR distillation
+
+**Source:** compiled view from `j8ckfi/library` as of August 27, 2026. Dense paper notes and mathematical formulations live in `skills/train-dense/references/`.
+
 ### train-moe
 
 Operating procedure for pretraining, optimizing, and post-training frontier Mixture of Experts (MoE) models using verified August 2026 SOTA methods. Evaluates architecture, residual stability, dispatch compression, second-order optimizers, training megakernels, and sparse policy RL.
@@ -138,6 +164,7 @@ npx skills add j8ckfi/skills --skill frontend
 npx skills add j8ckfi/skills --skill abiome-ui
 npx skills add j8ckfi/skills --skill harness-design
 npx skills add j8ckfi/skills --skill ontology
+npx skills add j8ckfi/skills --skill train-dense
 npx skills add j8ckfi/skills --skill train-moe
 ```
 
@@ -148,6 +175,7 @@ npx skills use j8ckfi/skills@frontend | claude
 npx skills use j8ckfi/skills@abiome-ui | claude
 npx skills use j8ckfi/skills@harness-design | claude
 npx skills use j8ckfi/skills@ontology | claude
+npx skills use j8ckfi/skills@train-dense | claude
 npx skills use j8ckfi/skills@train-moe | claude
 ```
 
@@ -179,6 +207,10 @@ Formalize the claims in this paper before we treat them as true.
 
 ```
 Audit our Blackwell cluster pretraining config for an 800B MoE run.
+```
+
+```
+Audit our dense 7B pretraining run for optimizer parameter partitioning and FlashAttention-4 kernel bindings.
 ```
 
 ```
