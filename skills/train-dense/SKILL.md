@@ -175,32 +175,31 @@ Direct mappings from verified library graph nodes (`j8ckfi/library`) and arXiv i
 | Operational Component | Library Node ID / Key | Reference / Identifier | Code Repository / Source |
 |---|---|---|---|
 | Olmo 3 7B Backbone & Dolma 3 | `method:olmo-3` | arXiv:`2512.13961` | https://github.com/allenai/OLMo-core |
-| Dolma 3 Dataset Mixture | `dataset:dolma-3` | arXiv:`2512.13961` | https://github.com/allenai/dolma3 |
 | Muon² 2nd-Moment Optimizer | `method:muon2` | arXiv:`2604.09967` | Second-moment Newton-Schulz (no verified abs repo) |
-| KL-SOAP Optimizer | `paper:soap-muon-scale` | arXiv:`2607.20548` | https://github.com/NVIDIA-NeMo/Emerging-Optimizers |
-| FlashAttention-4 Kernel | `method:flashattention-4` | arXiv:`2603.05451` | https://github.com/Dao-AILab/flash-attention |
-| Gram Newton-Schulz Kernel | `blog:gram-newton-schulz` | Blog (no arXiv ID) | https://github.com/Dao-AILab/gram-newton-schulz |
-| Hierarchical Muon (HiMuon) | `method:himuon` | arXiv:`2606.27216` | Tiled Triton NS kernel |
+| KL-SOAP Optimizer | `method:soap-muon-scale` | arXiv:`2607.20548` | https://github.com/NVIDIA-NeMo/Emerging-Optimizers |
+| FlashAttention-4 Kernel | arXiv:`2603.05451` | CuTe-DSL, Blackwell/Hopper | https://github.com/Dao-AILab/flash-attention |
+| Gram Newton-Schulz Kernel | blog dao-lab Gram Newton-Schulz | Blog (no arXiv ID) | https://github.com/Dao-AILab/gram-newton-schulz |
+| Hierarchical Muon (HiMuon) | arXiv:`2606.27216` | Tiled Triton NS kernel | SRAM-resident $T \le 128$ |
 | Quartet II NVFP4 Training | `method:quartet-ii` | arXiv:`2601.22813` | https://github.com/IST-DASLab/Quartet-II |
-| MI355X MXFP4 Training | `paper:mxfp4-mi355x` | arXiv:`2605.09825` | AMD MI355X MXFP4 pretraining |
+| MI355X MXFP4 Training | `method:mxfp4-mi355x` | arXiv:`2605.09825` | AMD MI355X MXFP4 pretraining |
 | Sparse-BitNet (Native 1.58b) | `method:sparse-bitnet` | arXiv:`2603.05168` | https://github.com/AAzdi/Sparse-BitNet |
-| DeMix Read-Next Mix | `dataset:demix` | arXiv:`2602.00747` | https://github.com/Lucius-lsr/DeMix |
-| CausalMix Read-Next Mix | `dataset:causalmix` | arXiv:`2607.01104` | Causal pretraining mixture |
-| OP-Mix Read-Next Mix | `dataset:op-mix` | arXiv:`2605.15220` | Optimization-guided pretraining mix |
-| Manifold Hyper-Connections | `arch:mhc-residuals` | arXiv:`2512.24880` | Optional dense experiment ($n=4$) |
-| Extreme Hyper-Connections | `arch:xhc-residuals` | arXiv:`2607.14530` | Pointer only (MoE 18B/28B scaled) |
-| Attention Residuals | `arch:attnres` | arXiv:`2603.15031` | Pointer only (MoE scaled) |
+| DeMix Read-Next Mix | `method:demix` | arXiv:`2602.00747` | https://github.com/Lucius-lsr/DeMix |
+| CausalMix Read-Next Mix | `method:causalmix` | arXiv:`2607.01104` | Causal pretraining mixture |
+| OP-Mix Read-Next Mix | `method:op-mix` | arXiv:`2605.15220` | Optimization-guided pretraining mix |
+| Manifold Hyper-Connections | `method:mhc` | arXiv:`2512.24880` | Optional dense experiment ($n=4$) |
+| Extreme Hyper-Connections | arXiv:`2607.14530` | Pointer only | MoE 18B/28B scaled |
+| Attention Residuals | `method:attnres` | arXiv:`2603.15031` | Pointer only (MoE scaled) |
 | Nemotron-Cascade 2 Post-Train | `method:nemotron-cascade-2` | arXiv:`2603.19220` | SFT and cascade alignment |
 | CISPO Math/Code RL Baseline | `method:cispo` | arXiv:`2506.13585` | MiniMax-M1 / ScaleRL `2510.13786` (2025 baseline) |
-| CPPO Policy Optimization | `method:cppo` | arXiv:`2606.10968` | Constrained PPO exploration |
-| MinPRO Policy Optimization | `method:minpro` | arXiv:`2601.22718` | Minimal policy ratio optimization |
-| SSPO Policy Optimization | `method:sspo` | arXiv:`2602.19327` | Step-size regularized policy optimization |
+| CPPO Policy Optimization | `method:cppo` | arXiv:`2606.10968` | Cumulative Prefix-divergence Policy Optimization |
+| MinPRO Policy Optimization | `method:minpro` | arXiv:`2601.22718` | Minimum Prefix Ratio |
+| SSPO Policy Optimization | `method:sspo` | arXiv:`2602.19327` | Soft Sequence Policy Optimization |
 | OPD Policy Distillation | `method:opd` | arXiv:`2604.13016` | https://github.com/thunlp/OPD |
 | OPDVR Verifier Distillation | `method:opdvr` | arXiv:`2608.24696` | https://github.com/LeapLabTHU/OPDVR |
 | BPCO Single-Sample Critic | `method:bpco` | arXiv:`2608.23566` | https://github.com/QPHutu/golden_critic |
 | MONA (Muon Variant) | `method:mona` | arXiv:`2605.26842` | Provenance only, not default |
 | HTMuon (Muon Variant) | `method:htmuon` | arXiv:`2603.10067` | https://github.com/TDCSZ327/HTmuon (provenance only) |
-| Variance-Adaptive Muon | `method:va-muon` | arXiv:`2601.14603` | Provenance only, not default |
+| Variance-Adaptive Muon | `method:variance-adaptive-muon` | arXiv:`2601.14603` | Provenance only, not default |
 | SF-NorMuon (Muon Variant) | `method:sf-normuon` | arXiv:`2605.23061` | Provenance only, not default |
 | Newton-Muon (Muon Variant) | `method:newton-muon` | arXiv:`2604.01472` | Provenance only, not default |
 

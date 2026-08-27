@@ -21,9 +21,9 @@ Dense technical notes on instruction alignment, reinforcement learning, and dist
 - **Mechanism**: Clipped importance-sampling policy optimization mitigating policy entropy collapse under multi-turn reasoning steps.
 
 ### 2026 RL Algorithms
-- **CPPO (`2606.10968`)**: Constrained Proximal Policy Optimization enforcing trust-region divergence bounds.
-- **MinPRO (`2601.22718`)**: Minimal Policy Ratio Optimization stabilizing gradient variance across long reasoning trajectories.
-- **SSPO (`2602.19327`)**: Step-size regularized policy optimization for verifiable reasoning tasks.
+- **CPPO (`2606.10968`)**: Cumulative Prefix-divergence Policy Optimization (Hunyuan paper "Beyond Uniform Token-Level Trust Region in LLM Reinforcement Learning"). Applies position-weighted threshold and cumulative prefix budget for token-level masking (`https://hunyuan-cppo.github.io/`).
+- **MinPRO (`2601.22718`)**: Minimum Prefix Ratio ("A Step Back: Prefix Importance Ratio Stabilizes Policy Optimization", Lei/Cheng/Tao). Off-policy algorithm replacing cumulative prefix importance ratio with min token-level ratio in the preceding prefix.
+- **SSPO (`2602.19327`)**: Soft Sequence Policy Optimization ("Soft Sequence Policy Optimization", Glazyrina/Kryzhanovskiy/Ischenko). Off-policy GRPO-family method using geometric-mean of token-level soft gates inside sequence-level IS weights (arctan log-ratio gate).
 - **BPCO (`2608.23566`)**: Best-of-Policy Critic Optimization using single sample per prompt (`https://github.com/QPHutu/golden_critic`).
 
 ---
