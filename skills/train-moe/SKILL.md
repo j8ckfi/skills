@@ -1,6 +1,6 @@
 ---
 name: train-moe
-description: Pretrains, optimizes, and post-trains sparse Mixture of Experts (MoE) models using verified August 2026 SOTA methods. Covers DeepSeek-V4 CSA+HCA hybrid attention with mHC residuals, Kimi K3 Delta Attention with block AttnRes and Stable LatentMoE, Nemotron-3 Super latent dispatch compression, Muon² and KL-SOAP 2nd-order optimizers, Mixture-of-Kittens (MoK) Blackwell NVL72 megakernels, MXFP4 QAT, and SAPO/SAO/OPDVR post-training. Use when designing, debugging, or auditing an MoE pretraining cluster run, selecting expert routing topologies, resolving communication bottlenecks, or post-training sparse models.
+description: "Design, configure, or audit mixture-of-experts LM training, routing, expert parallelism, and hardware-matched kernels. Treat the dated recipe as a starting point and verify current evidence."
 license: MIT
 metadata:
   version: "0.1.0"

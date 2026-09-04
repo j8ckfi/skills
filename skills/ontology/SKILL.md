@@ -1,27 +1,16 @@
 ---
 name: ontology
-description: Derive ground truth into a durable on-disk network of nodes and edges. Do not trust repo docs, papers, or unaudited inference. Use for /ontology, stale or scattered docs, greenfield literature, or when a claim must be formalized before it is believed.
+description: "Build or update an evidence-backed ontology or audit a specified set of claims when requested. Preserve provenance, uncertainty, and distinctions between source claims and verified results."
 disable-model-invocation: true
 ---
 
 # Ontology
 
-Ground truth is a fact you derived and checked, with evidence. Everything else is a hypothesis: READMEs, comments, surveys, and published papers. This skill may have been called because those sources are out of date, scattered, or wrong.
+Build or update an evidence-backed on-disk network when the user requests an ontology or claim audit. Preserve the distinction between a source's claim, a derivation, an empirical observation, and an independently verified result.
 
-The artifact is the ontology network on disk. Chat is a delta for this run, not the ontology. A large investigation lives in files you grow, not in a recap that disappears.
+Use the supplied scope and existing network. A paper or repository document is evidence to assess, not automatically established truth or automatically untrustworthy. Match validation to the claim: formal proof for a formal mathematical result, reproducible checks for executable claims, and clear attribution for source-reported facts. Do not demand a new proof of every background fact.
 
-A source does not enter the network as admitted because you found it. It enters after you reconstruct the claim and the reconstruction holds. For a mathematics paper that means formalize it first. Locate the passage with `citations`. Then do this skill's work. Location is not admission.
-
-Do not answer from a doc, a paper's abstract, or your own earlier summary. Do not skip derivation because the answer looks obvious. If you can derive a fact, derive it.
-
-This is a full investigation, not a skim. Open a todolist with one entry per phase before you start.
-
-1. Open
-2. Frame
-3. Inventory
-4. Derive
-5. Diff
-6. Report
+Work through the relevant phases below without forcing a separate checklist or repeated questions. Keep the network durable, record uncertainty, and explain material changes concisely.
 
 ## Phase A: Open
 
@@ -49,7 +38,7 @@ If the query is vague, pick the smallest set of questions that would let a tired
 
 ## Phase C: Inventory
 
-List candidate sources. Rank them. Do not read docs or papers first and treat derivation as confirmation.
+List relevant candidate sources and assess their suitability for the claim. Use the hierarchy below for verification strength, while reading primary documents when needed to understand what is being claimed. Avoid selecting evidence solely to confirm an initial interpretation.
 
 Trust, high to low:
 
@@ -79,9 +68,9 @@ For each framed question, produce the answer from the highest-trust source that 
 
 ### Literature
 
-Pull the source with `citations`. Then reconstruct. Do not admit a claim because the paper is famous, peer reviewed, or convenient.
+Open the primary source with `citations` when available, or the current host's source retrieval tools. Then assess or reconstruct the claim at the requested level of verification. Do not admit a claim because the paper is famous, peer reviewed, or convenient.
 
-For mathematics, formalize before admission:
+For a mathematical proposition to be admitted as independently verified, reconstruct its proof. A source-reported theorem may be recorded with clear attribution without claiming that its truth was independently verified:
 
 1. Write definition nodes for every notion the argument uses, including the implicit ones.
 2. Restate the theorem on a claim node with every hypothesis visible.
@@ -93,11 +82,11 @@ For empirical work, restate the claim so it can be false. Check that the method,
 
 Write each derived fact as one sentence on the node, plus a locator: path, symbol, command, paper identifier, or the reconstructed statement.
 
-If you cannot derive a fact, mark the node `unknown` and say what you tried. Do not fill the gap from a doc or a paper you have not formalized.
+If the requested verification cannot be completed, mark that claim `unknown` and record the gap. A checked attribution such as “paper P reports result R” can be admitted as an attribution; it does not establish R itself. Record the verification level explicitly.
 
 ## Phase E: Diff
 
-Compare admitted nodes to every doc and paper that talks about the same objects.
+Compare admitted nodes to relevant sources within the requested scope that discuss the same objects.
 
 For each mismatch, add a `contradicts` edge and a one-line note on both nodes:
 
@@ -118,7 +107,7 @@ The network on disk is the result. The chat is a delta. Do not paste the graph, 
 
 Path to `ontology/`. Counts: nodes created, nodes updated, edges added, by status.
 
-### Ground truth
+### Findings
 
 The admitted answers to the framed questions. Each line points at a node id. `unknown` stays `unknown`. `rejected` names the source node and why the reconstruction failed.
 
@@ -132,7 +121,7 @@ Compact table of this run only:
 
 ### Drift
 
-One line per mismatch or name collision. Source node, what it claims, what is true instead, edge added.
+One line per mismatch or name collision. Source node, what it claims, what the evidence supports at the recorded verification level, edge added.
 
 ### Unify
 
@@ -152,7 +141,7 @@ Four node types. Do not add more.
 | `entity` | A thing: module, dataset, construction, person, system |
 | `definition` | A term with a precise meaning you wrote |
 | `claim` | A theorem, result, or behavioral fact |
-| `source` | A paper, doc, file, or other hypothesis container |
+| `source` | A paper, doc, file, or other source record |
 
 Five relations. Do not add more.
 
@@ -192,7 +181,7 @@ Admitted: `budget.mjs` reads `budget.json` and fails CI when the count exceeds t
 Reconstruction, gaps, and why a status is `unknown` or `rejected`.
 ```
 
-Status is one of `candidate`, `admitted`, `unknown`, `rejected`. Only `admitted` is ground truth. The others stay in the network so the next run does not start from zero.
+Status is one of `candidate`, `admitted`, `unknown`, `rejected`. `admitted` means the node meets its explicitly recorded evidence standard; it is not a claim of certainty beyond that standard. Keep attributed reports distinct from independently verified results. The other statuses stay in the network so the next run does not start from zero.
 
 Edge line, appended to `ontology/graph.jsonl`:
 
@@ -210,7 +199,7 @@ Ids are stable kebab-case slugs of the canonical name. Look up aliases before mi
 - Rebuilding `ontology/` instead of merging.
 - Minting a second node for an alias already in the index.
 - Believing the README or the paper, then skimming for support.
-- Admitting a theorem from the author's statement without formalizing the proof.
+- Labeling a source-reported theorem as independently verified without checking its proof.
 - Treating a survey or related-work paragraph as a primary result.
 - Believing comments, types, or names that describe an old design.
 - Believing your own recap from earlier in the chat.
