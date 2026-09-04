@@ -1,6 +1,6 @@
 ---
 name: train-dense
-description: Pretrains dense (non-MoE) LMs, ~7B-class, using verified Aug 2026 SOTA: Olmo-3-shaped backbone, Dolma 3 curriculum, Muon² (KL-SOAP if memory), FlashAttention-4, Gram Newton-Schulz / Hierarchical Muon kernels, optional NVFP4/MXFP4. Use when training a dense 7B from scratch, auditing a dense pretrain run, choosing Muon vs AdamW vs SOAP, picking attention/optimizer kernels, or deciding FP4 vs BF16. Not for MoE (use train-moe) or 24GB LoRA (use peft-24gb when it exists).
+description: "Design, configure, or audit dense LM pretraining using the skill’s dated research recipes, actual hardware, and current supporting evidence. Keep user-selected models and workload constraints."
 license: MIT
 metadata:
   version: "0.1.0"

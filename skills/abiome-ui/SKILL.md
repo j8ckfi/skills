@@ -1,6 +1,6 @@
 ---
 name: abiome-ui
-description: Authoritative brand, UI/UX, and design system guidelines for all abiome surfaces — landing pages, publications, slide decks, model cards, interactive tools, and dense product surfaces across abiome-org repositories and *.abiome.org domains (including iso.abiome.org, platform-main, AbCP). Enforces the two-layer architecture (sea-glass flow field + paper records), exact brand tokens (ink #1d1b18, brand #006e59, field #a8d0bd, paper #ffffff, seaglass/mint/butter), Alegreya typography, zero border-radius, flat shadowless panels, lowercase brand naming, cycling square motifs, and dense tool UI rules. Use whenever designing, implementing, styling, or reviewing UI for any abiome property.
+description: "Apply the abiome brand and design system to abiome-org projects and abiome.org properties, using the canonical landing-repository guidelines and @abiome/ds. Do not apply outside that brand."
 license: MIT
 metadata:
   version: "1.0.0"
